@@ -11,14 +11,8 @@ let airportData = "https://raw.githubusercontent.com/cewarkentin/mapping_earthqu
 d3.json(airportData).then(function(data) {
   console.log(data);
 // Creating a GeoJSON layer with the retrieved data.
-L.geoJSON(data, {
-  // We turn each feature into a marker on the map.
-  pointToLayer: function(feature, latlng) {
-    console.log(feature);
-    return L.marker(latlng)
-    .bindPopup("<h3> Airport code: " + feature.properties.faa + "</h3> <hr> <h3> Airport name: " + feature.properties.name + "</h3>");
-  }
-}).addTo(map);});
+L.geoJSON(data).addTo(map);
+});
 
 // We create the tile layer that will be the background of our map.
 let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/tiles/{z}/{x}/{y}?access_token={accessToken}', {
